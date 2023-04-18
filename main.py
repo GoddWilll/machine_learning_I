@@ -119,6 +119,8 @@ X_test = pd.read_csv("data/Xtest.csv")
 pred_prob_test = pd.DataFrame(model.predict_proba(X_test))
 
 pred_prob_test.rename(columns = {0:'Y_1', 1:'Y_2', 2:'Y_3', 3:'Y_4', 4:'Y_5', 5:'Y_6', 6:'Y_7'}, inplace=True)
+idx = pred_prob_test.index
+pred_prob_test.insert(0, 'id', idx)
 
 #print(pred_prob_test.head())
-#pred_prob_test.to_csv("../benchmark.csv", index=False)
+pred_prob_test.to_csv("../benchmark.csv", index=False)
