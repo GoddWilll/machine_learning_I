@@ -106,21 +106,22 @@ for col, axis in zip(X_sub.columns, ax.flatten()):
 
 #creating model
 model = Pipeline(steps=[('preprocessor', preprocessor),
-                      ('classifier', LogisticRegression())])
+                      ('classifier', RandomForestClassifier())])
 
 model.fit(X_sub, Y)
 
 pred_prob_train = pd.DataFrame(model.predict_proba(X_sub))
 loss = log_loss(Y, pred_prob_train)
-#print(f'Training log-loss : {loss}')
+print(f'Training log-loss : {loss}')
 
 #importing test set
 X_test = pd.read_csv("data/Xtest.csv")
 pred_prob_test = pd.DataFrame(model.predict_proba(X_test))
 
+print(pred_prob_test.head())
+
 pred_prob_test.rename(columns = {0:'Y_1', 1:'Y_2', 2:'Y_3', 3:'Y_4', 4:'Y_5', 5:'Y_6', 6:'Y_7'}, inplace=True)
 idx = pred_prob_test.index
 pred_prob_test.insert(0, 'id', idx)
 
-#print(pred_prob_test.head())
 pred_prob_test.to_csv("../benchmark.csv", index=False)
