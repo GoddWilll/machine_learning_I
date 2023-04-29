@@ -10,6 +10,9 @@
    |-> Modifier les colonnes catégorielles\
 2. Choix des modèles (chaque modèle peut être associé à une branche du repo git)\
 3. Comparaison des différents résultats
+## Documentation
+[Sikit-Learn How to choose the model](https://scikit-learn.org/stable/tutorial/machine_learning_map/index.html#choosing-the-right-estimator)
+[ExtraTreesClassifier](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.ExtraTreesClassifier.html#sklearn.ensemble.ExtraTreesClassifier)
 ## Auteurs
 Amorison Nathan \
 Louhou Godwill \
