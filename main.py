@@ -13,11 +13,10 @@ from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler, OneHotEncoder
 from sklearn.metrics import (ConfusionMatrixDisplay, accuracy_score,
 							confusion_matrix, log_loss)
-from sklearn.svm import SVC
 
 #importing models
 from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
-from sklearn.ensemble import GradientBoostingClassifier, RandomForestClassifier, ExtraTreesClassifier
+from sklearn.ensemble import GradientBoostingClassifier, RandomForestClassifier, ExtraTreesClassifier, BaggingClassifier
 from sklearn.feature_selection import SelectKBest, f_classif
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import RandomizedSearchCV, train_test_split
@@ -51,13 +50,13 @@ X_sub = df_train[numeric_features+categorical_features]
 cat = SimpleImputer(missing_values=np.nan, strategy="most_frequent")
 Y = cat.fit_transform(df_train[["Y"]])
 
-
+"""
 class MyThread(threading.Thread):
 	def __init__(self, ThreadName, X_sub, Y, preprocessor):
 		super(MyThread, self).__init__()
 		#creating model
 		self.model = Pipeline(steps=[('preprocessor', preprocessor),
-		                      ('classifier', ExtraTreesClassifier(n_estimators=800, criterion="log_loss"))])
+		                      ('classifier', ExtraTreesClassifier(n_estimators=1800, criterion="log_loss", max_features=None, n_jobs=4))])
 		self.X_train, self.X_test, self.Y_train, self.Y_test = train_test_split(
 			X_sub, Y, train_size=.8, test_size=.2, shuffle=True, random_state=0
 		)
@@ -73,7 +72,7 @@ class MyThread(threading.Thread):
 
 thread_list = []
 
-for i in range(4):
+for i in range(3):
 	x = MyThread(f"Thread-{i}", X_sub, Y, preprocessor)
 	x.start()
 	thread_list.append(x)
@@ -84,7 +83,6 @@ for t in thread_list:
 sys.stdout.flush()
 
 
-"""
 X = df_train[df_train.columns.drop(["Y"])]
 
 #data analysis
@@ -102,9 +100,10 @@ for col, axis in zip(X.columns, ax.flatten()):
 
 plt.show()
 
+"""
 #creating model
 model = Pipeline(steps=[('preprocessor', preprocessor),
-                      ('classifier', ExtraTreesClassifier(n_estimators=800, criterion="log_loss", n_jobs=5))])
+                      ('classifier', ExtraTreesClassifier(n_estimators=2400, criterion="log_loss", max_features=None, n_jobs=7))])
 
 model.fit(X_sub, np.ravel(Y, order="C"))
 
@@ -123,4 +122,4 @@ pred_prob_test.rename(columns = {0:'Y_1', 1:'Y_2', 2:'Y_3', 3:'Y_4', 4:'Y_5', 5:
 idx = pred_prob_test.index
 pred_prob_test.insert(0, 'id', idx)
 
-pred_prob_test.to_csv("../benchmark.csv", index=False)"""
+pred_prob_test.to_csv("../benchmark.csv", index=False)
