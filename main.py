@@ -24,12 +24,11 @@ from sklearn.naive_bayes import GaussianNB
 from sklearn.neighbors import KNeighborsClassifier
 
 import threading
-import sys
 
 #importing data file and creating a DataFrame
 df_train = pd.read_csv("data/train.csv")
 
-numeric_features = ["X1", "X4", "X6", "X8", "X10"]
+numeric_features = ["X1", "X4", "X6", "X8", "X9", "X10"]
 numeric_transformer = Pipeline(steps=[
     ('imputer', SimpleImputer(missing_values=np.nan, strategy='mean')),
     ('scaler', StandardScaler())])
@@ -63,6 +62,7 @@ class MyThread(threading.Thread):
 		self.threadName = ThreadName
 
 	def run(self):
+		print(f"{self.threadName}: start fitting")
 		self.model.fit(self.X_train, np.ravel(self.Y_train, order="C"))
 
 		pred_prob_train = pd.DataFrame(self.model.predict_proba(self.X_test))
@@ -79,26 +79,6 @@ for i in range(3):
 
 for t in thread_list:
 	t.join()
-
-sys.stdout.flush()
-
-
-X = df_train[df_train.columns.drop(["Y"])]
-
-#data analysis
-fig, ax = plt.subplots(3, 4, figsize=(11, 10), sharey=True)
-for col, axis in zip(X.columns, ax.flatten()):
-	sns.scatterplot(x=df_train[col], y=df_train["Y"], ax=axis)
-
-
-fig, ax = plt.subplots(3, 4, figsize=(20, 10))
-for col, axis in zip(X.columns, ax.flatten()):
-	if col == "X11" or col == "X12":
-		sns.boxplot(x=df_train[col], y=df_train["Y"], ax=axis)
-	else:
-		sns.boxplot(x=df_train["Y"], y=df_train[col], ax=axis)
-
-plt.show()
 
 """
 #creating model
