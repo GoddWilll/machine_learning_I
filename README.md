@@ -13,6 +13,7 @@
 ## Documentation
 [Sikit-Learn How to choose the model](https://scikit-learn.org/stable/tutorial/machine_learning_map/index.html#choosing-the-right-estimator)
 [ExtraTreesClassifier](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.ExtraTreesClassifier.html#sklearn.ensemble.ExtraTreesClassifier)
+[RandomForest or ExtraTrees](https://www.kaggle.com/code/hkapoor/random-forest-vs-extra-trees/notebook)
 ## Auteurs
 Amorison Nathan \
 Louhou Godwill \
