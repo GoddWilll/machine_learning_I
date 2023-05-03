@@ -18,8 +18,6 @@ from sklearn.metrics import (ConfusionMatrixDisplay, accuracy_score,
 #importing data file and creating a DataFrame
 df_train = pd.read_csv("data/train.csv")
 
-
-
 X = df_train[df_train.columns.drop(["Y"])]
 
 #data analysis

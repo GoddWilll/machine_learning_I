@@ -1,0 +1,11 @@
+\babel@toc {french}{}
+\contentsline {section}{\numberline {1}Introduction}{2}{section.1}%
+\contentsline {section}{\numberline {2}M\IeC {\'e}thodologie}{2}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Raisonnement initial}{2}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Linear SVC}{2}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Logistic Regression}{3}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}KNN - KNeighborsClassifier}{3}{subsection.2.4}%
+\contentsline {subsection}{\numberline {2.5}Random Forest Classifier}{3}{subsection.2.5}%
+\contentsline {subsection}{\numberline {2.6}Gradient Boosting Classifier}{3}{subsection.2.6}%
+\contentsline {subsection}{\numberline {2.7}Bagging Classifier}{3}{subsection.2.7}%
+\contentsline {subsection}{\numberline {2.8}Extra Trees Classifier}{3}{subsection.2.8}%
